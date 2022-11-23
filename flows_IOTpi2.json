@@ -1,12 +1,5 @@
 [
     {
-        "id": "3f3c6013.7a3158",
-        "type": "tab",
-        "label": "Test en rommel",
-        "disabled": true,
-        "info": ""
-    },
-    {
         "id": "a44eb8b3d38d3cdb",
         "type": "tab",
         "label": "Dashboard - Customer",
@@ -182,6 +175,13 @@
         "disabled": false,
         "info": "",
         "env": []
+    },
+    {
+        "id": "3f3c6013.7a3158",
+        "type": "tab",
+        "label": "Test en rommel",
+        "disabled": true,
+        "info": ""
     },
     {
         "id": "0aa42b3e903ed900",
@@ -1808,951 +1808,6 @@
         "disp": true,
         "width": "10",
         "collapse": false
-    },
-    {
-        "id": "21267cad.8e452c",
-        "type": "inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Hello world",
-        "payloadType": "str",
-        "x": 210,
-        "y": 1080,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a5d1adac.68fc3",
-        "type": "ui_colour_picker",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "label": "",
-        "group": "4334b06.5f5075",
-        "format": "hex",
-        "outformat": "string",
-        "showSwatch": true,
-        "showPicker": false,
-        "showValue": false,
-        "showHue": false,
-        "showAlpha": false,
-        "showLightness": true,
-        "square": "false",
-        "dynOutput": "false",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "",
-        "x": 210,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ed076079.17c2d",
-        "type": "change",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 200,
-        "y": 1120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "57c9d20f.effcec",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 590,
-        "y": 1260,
-        "wires": []
-    },
-    {
-        "id": "64497918.5ea5a8",
-        "type": "change",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "rules": [
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "world",
-                "fromt": "str",
-                "to": "from a node red changeblock",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 1260,
-        "wires": [
-            [
-                "57c9d20f.effcec"
-            ]
-        ]
-    },
-    {
-        "id": "81d0f965.1ec648",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 590,
-        "y": 1220,
-        "wires": []
-    },
-    {
-        "id": "d818367b.2b7188",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "name": "Function1",
-        "func": "var newString = msg.payload.replace(\"world\", \"from a Node Red function\");\nreturn{payload:newString};",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 360,
-        "y": 1300,
-        "wires": [
-            [
-                "c2cd1936.4928d8"
-            ]
-        ]
-    },
-    {
-        "id": "c2cd1936.4928d8",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 590,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "68ff7ae4.ebb264",
-        "type": "ui_button",
-        "z": "3f3c6013.7a3158",
-        "name": "",
-        "group": "b861ab4f.ebbc38",
-        "order": 3,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Test Knop",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "Hello world",
-        "payloadType": "str",
-        "topic": "",
-        "x": 180,
-        "y": 1220,
-        "wires": [
-            [
-                "d818367b.2b7188",
-                "64497918.5ea5a8",
-                "81d0f965.1ec648"
-            ]
-        ]
-    },
-    {
-        "id": "ec911008.7fbea",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "ReadTest:",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 580,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "1782be91.a92751",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "Paard",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "a56ac1f7.2c0b5",
-        "type": "OPCUA-IIoT-Inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "injectType": "listen",
-        "payload": "1000",
-        "payloadType": "num",
-        "topic": "",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "startDelay": "8",
-        "name": "listen",
-        "addressSpaceItems": [
-            {
-                "name": "Ping:",
-                "nodeId": "ns=3;s=\"gtyp_Interface_Dashboard\".\"Subscribe\".\"EnvironmentSensor\".\"r_t\"",
-                "datatypeName": ""
-            }
-        ],
-        "x": 129.6666717529297,
-        "y": 326,
-        "wires": [
-            [
-                "db0eded3.f2e2f"
-            ]
-        ]
-    },
-    {
-        "id": "db0eded3.f2e2f",
-        "type": "OPCUA-IIoT-Listener",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "action": "subscribe",
-        "queueSize": "5",
-        "name": "",
-        "topic": "",
-        "justValue": true,
-        "useGroupItems": false,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "x": 279.6666717529297,
-        "y": 326,
-        "wires": [
-            [
-                "1782be91.a92751"
-            ]
-        ]
-    },
-    {
-        "id": "a278155e.77f7e8",
-        "type": "OPCUA-IIoT-Write",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "x": 590,
-        "y": 540,
-        "wires": [
-            [
-                "4850c880.9cfbf8"
-            ]
-        ]
-    },
-    {
-        "id": "4850c880.9cfbf8",
-        "type": "OPCUA-IIoT-Response",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 740,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "383b7590.b0c392",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "value to write",
-        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_Interface_Dashboard\".\"Publish\".\"OrderWorkpieceButton\".\"s_type\"',\n        \"datatypeName\":'String'},\n        ]\n\nmsg.valuesToWrite = [\n    \"GREEN\"\n    ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 540,
-        "wires": [
-            [
-                "a278155e.77f7e8"
-            ]
-        ]
-    },
-    {
-        "id": "b134c2a7.afaaa",
-        "type": "inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 240,
-        "y": 540,
-        "wires": [
-            [
-                "383b7590.b0c392"
-            ]
-        ]
-    },
-    {
-        "id": "6903f2b5.aa5974",
-        "type": "OPCUA-IIoT-Write",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "x": 590,
-        "y": 640,
-        "wires": [
-            [
-                "ec7abe41.ca974"
-            ]
-        ]
-    },
-    {
-        "id": "ec7abe41.ca974",
-        "type": "OPCUA-IIoT-Response",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 740,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2287145f.81d28c",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "value to write",
-        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"PRG_HBW_Ablauf_DB\".\"Flag\"',\n        \"datatypeName\":'Int16'},\n        ]\n\nmsg.valuesToWrite = [\n    6\n    ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 640,
-        "wires": [
-            [
-                "6903f2b5.aa5974"
-            ]
-        ]
-    },
-    {
-        "id": "61019ec0.21d96",
-        "type": "inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 240,
-        "y": 640,
-        "wires": [
-            [
-                "2287145f.81d28c"
-            ]
-        ]
-    },
-    {
-        "id": "3e12e5fe.62d94a",
-        "type": "OPCUA-IIoT-Write",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "x": 590,
-        "y": 740,
-        "wires": [
-            [
-                "e96502bc.05d228"
-            ]
-        ]
-    },
-    {
-        "id": "e96502bc.05d228",
-        "type": "OPCUA-IIoT-Response",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 740,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ab471955.7d1",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "value to write",
-        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"Parameters\".\"DoSaw\"',\n        \"datatypeName\":'Boolean'},\n        ]\n        \n        \n//{   \"name\":\"\",\n//        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"x_Color_Sensor_Calibration\"',\n//        \"datatypeName\":'Boolean'},        \n\nmsg.valuesToWrite = [\n    false\n    ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 740,
-        "wires": [
-            [
-                "3e12e5fe.62d94a"
-            ]
-        ]
-    },
-    {
-        "id": "9ff20030.d195a",
-        "type": "inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 240,
-        "y": 740,
-        "wires": [
-            [
-                "ab471955.7d1"
-            ]
-        ]
-    },
-    {
-        "id": "4b84c7fd.1d0a5",
-        "type": "comment",
-        "z": "3f3c6013.7a3158",
-        "name": "Integer:",
-        "info": "",
-        "x": 210,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "99b03ee5.fc6e38",
-        "type": "comment",
-        "z": "3f3c6013.7a3158",
-        "name": "Boolean",
-        "info": "",
-        "x": 220,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "9c74e7f8.70644",
-        "type": "comment",
-        "z": "3f3c6013.7a3158",
-        "name": "String:",
-        "info": "",
-        "x": 210,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "3a5fc3c9.daeadc",
-        "type": "comment",
-        "z": "3f3c6013.7a3158",
-        "name": "OPC/UA voorbeelden:",
-        "info": "",
-        "x": 180,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "9901959.7057268",
-        "type": "OPCUA-IIoT-Write",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "x": 590,
-        "y": 1040,
-        "wires": [
-            [
-                "44e02261.f67f7c"
-            ]
-        ]
-    },
-    {
-        "id": "44e02261.f67f7c",
-        "type": "OPCUA-IIoT-Response",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 740,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8d04260e.6e4558",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "value to write",
-        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"PRG_HBW_Ablauf_DB\".\"li_StepCase\"',\n        \"datatypeName\":'Int16'},\n        ]\n\nmsg.valuesToWrite = [\n    60\n    ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 1040,
-        "wires": [
-            [
-                "9901959.7057268"
-            ]
-        ]
-    },
-    {
-        "id": "9053d049.b7b598",
-        "type": "inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 240,
-        "y": 1040,
-        "wires": [
-            [
-                "8d04260e.6e4558"
-            ]
-        ]
-    },
-    {
-        "id": "e21d85b.15abf78",
-        "type": "comment",
-        "z": "3f3c6013.7a3158",
-        "name": "StepCounter aanpassen:",
-        "info": "",
-        "x": 270,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "f735c9f8.da5b28",
-        "type": "OPCUA-IIoT-Write",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "x": 590,
-        "y": 800,
-        "wires": [
-            [
-                "df806290.180e5"
-            ]
-        ]
-    },
-    {
-        "id": "df806290.180e5",
-        "type": "OPCUA-IIoT-Response",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": false,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 740,
-        "y": 800,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e2f0f16f.e27b48",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "value to write",
-        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"Parameters\".\"DoSaw\"',\n        \"datatypeName\":'Boolean'},\n        ]\n        \n        \n//{   \"name\":\"\",\n//        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"x_Color_Sensor_Calibration\"',\n//        \"datatypeName\":'Boolean'},        \n\nmsg.valuesToWrite = [\n    true\n    ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 800,
-        "wires": [
-            [
-                "f735c9f8.da5b28"
-            ]
-        ]
-    },
-    {
-        "id": "f880403b.edc818",
-        "type": "inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 240,
-        "y": 800,
-        "wires": [
-            [
-                "e2f0f16f.e27b48"
-            ]
-        ]
-    },
-    {
-        "id": "42d65573.dd4274",
-        "type": "OPCUA-IIoT-Inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "injectType": "listen",
-        "payload": "1000",
-        "payloadType": "num",
-        "topic": "",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "startDelay": "8",
-        "name": "listen",
-        "addressSpaceItems": [
-            {
-                "name": "DoOven",
-                "nodeId": "ns=3;s=\"gtyp_Setup\".\"di_Pos_Horizontal\"",
-                "datatypeName": ""
-            },
-            {
-                "name": "",
-                "nodeId": " ns=3;s=\"gtyp_Setup\".\"di_Pos_Rotate\"",
-                "datatypeName": ""
-            },
-            {
-                "name": "",
-                "nodeId": " ns=3;s=\"gtyp_Setup\".\"i_Pos_Selection\"",
-                "datatypeName": ""
-            },
-            {
-                "name": "",
-                "nodeId": "ns=3;s=\"gtyp_Setup\".\"di_Pos_Vertical\"",
-                "datatypeName": ""
-            },
-            {
-                "name": "",
-                "nodeId": " ns=3;s=\"gtyp_Setup\".\"x_Set_Pos_Activ\"",
-                "datatypeName": ""
-            }
-        ],
-        "x": 130,
-        "y": 140,
-        "wires": [
-            [
-                "7a31158.634cbec"
-            ]
-        ]
-    },
-    {
-        "id": "7a31158.634cbec",
-        "type": "OPCUA-IIoT-Listener",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "action": "subscribe",
-        "queueSize": "5",
-        "name": "",
-        "topic": "",
-        "justValue": true,
-        "useGroupItems": false,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "x": 280,
-        "y": 140,
-        "wires": [
-            [
-                "21184626.bb909a",
-                "5f521cf3.a8ac5c",
-                "e1584479.94bf28"
-            ]
-        ]
-    },
-    {
-        "id": "21184626.bb909a",
-        "type": "ui_gauge",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "group": "6cb2dbc1.59fb64",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "2",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 670,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "3f6de99.2189416",
-        "type": "OPCUA-IIoT-Inject",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "injectType": "listen",
-        "payload": "1000",
-        "payloadType": "num",
-        "topic": "",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "startDelay": "8",
-        "name": "listen",
-        "addressSpaceItems": [
-            {
-                "name": "Ping:",
-                "nodeId": "ns=3;s=\"Parameters\".\"DoOven\"",
-                "datatypeName": ""
-            }
-        ],
-        "x": 130,
-        "y": 200,
-        "wires": [
-            [
-                "6872cfba.57a1f8"
-            ]
-        ]
-    },
-    {
-        "id": "6872cfba.57a1f8",
-        "type": "OPCUA-IIoT-Listener",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "action": "subscribe",
-        "queueSize": "5",
-        "name": "",
-        "topic": "",
-        "justValue": true,
-        "useGroupItems": false,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "x": 280,
-        "y": 200,
-        "wires": [
-            [
-                "ec911008.7fbea",
-                "563efa94.13b3cc"
-            ]
-        ]
-    },
-    {
-        "id": "1fe84c4e.c759ec",
-        "type": "ui_switch",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "",
-        "label": "TestSwitch",
-        "tooltip": "",
-        "group": "6cb2dbc1.59fb64",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 790,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "563efa94.13b3cc",
-        "type": "function",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "Scripttest",
-        "func": "\nvar newMsg = {payload: msg.payload.value.value};\n//if( newMsg === true)\n//{\n//msg.payload= [true]\n//}\n//else{\n// msg.payload= [false]  \n//}\n\n//msg.payload=newMsg\nreturn newMsg;\n\n\n\n//if(msg.payload == true){\n//    msg.valuesToWrite = [true]\n//}else{\n//    msg.valuesToWrite = [false]\n//}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 580,
-        "y": 260,
-        "wires": [
-            [
-                "1fe84c4e.c759ec",
-                "39153fb8.4c5c4"
-            ]
-        ]
-    },
-    {
-        "id": "39153fb8.4c5c4",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "ExtractTest",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 790,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "5f521cf3.a8ac5c",
-        "type": "debug",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "name": "PingPing",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 480,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "e1584479.94bf28",
-        "type": "ui_text",
-        "z": "3f3c6013.7a3158",
-        "d": true,
-        "group": "6cb2dbc1.59fb64",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "text",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 680,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "1a9185f02f7e746a",
@@ -10542,7 +9597,7 @@
         "type": "debug",
         "z": "c9e497d1.175d6",
         "name": "PLC out to NFC",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -26692,6 +25747,951 @@
         "name": "Note for numbers",
         "info": "When writing numbers, the input should be given as a string\nnumbers given directly work most of the time but not always:\n0, for instance results in an NaN error.\n\nThe string is converted to an number using basic conversion:\n-must start with a number\n-ends at the first detected character that is not a number",
         "x": 580,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "21267cad.8e452c",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello world",
+        "payloadType": "str",
+        "x": 210,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a5d1adac.68fc3",
+        "type": "ui_colour_picker",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "label": "",
+        "group": "4334b06.5f5075",
+        "format": "hex",
+        "outformat": "string",
+        "showSwatch": true,
+        "showPicker": false,
+        "showValue": false,
+        "showHue": false,
+        "showAlpha": false,
+        "showLightness": true,
+        "square": "false",
+        "dynOutput": "false",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "x": 210,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed076079.17c2d",
+        "type": "change",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57c9d20f.effcec",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "64497918.5ea5a8",
+        "type": "change",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "world",
+                "fromt": "str",
+                "to": "from a node red changeblock",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1260,
+        "wires": [
+            [
+                "57c9d20f.effcec"
+            ]
+        ]
+    },
+    {
+        "id": "81d0f965.1ec648",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 590,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "d818367b.2b7188",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "name": "Function1",
+        "func": "var newString = msg.payload.replace(\"world\", \"from a Node Red function\");\nreturn{payload:newString};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 1300,
+        "wires": [
+            [
+                "c2cd1936.4928d8"
+            ]
+        ]
+    },
+    {
+        "id": "c2cd1936.4928d8",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "68ff7ae4.ebb264",
+        "type": "ui_button",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "group": "b861ab4f.ebbc38",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Test Knop",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "Hello world",
+        "payloadType": "str",
+        "topic": "",
+        "x": 180,
+        "y": 1220,
+        "wires": [
+            [
+                "d818367b.2b7188",
+                "64497918.5ea5a8",
+                "81d0f965.1ec648"
+            ]
+        ]
+    },
+    {
+        "id": "ec911008.7fbea",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "ReadTest:",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 580,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1782be91.a92751",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "Paard",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 570,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a56ac1f7.2c0b5",
+        "type": "OPCUA-IIoT-Inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "injectType": "listen",
+        "payload": "1000",
+        "payloadType": "num",
+        "topic": "",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "startDelay": "8",
+        "name": "listen",
+        "addressSpaceItems": [
+            {
+                "name": "Ping:",
+                "nodeId": "ns=3;s=\"gtyp_Interface_Dashboard\".\"Subscribe\".\"EnvironmentSensor\".\"r_t\"",
+                "datatypeName": ""
+            }
+        ],
+        "x": 129.6666717529297,
+        "y": 326,
+        "wires": [
+            [
+                "db0eded3.f2e2f"
+            ]
+        ]
+    },
+    {
+        "id": "db0eded3.f2e2f",
+        "type": "OPCUA-IIoT-Listener",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "action": "subscribe",
+        "queueSize": "5",
+        "name": "",
+        "topic": "",
+        "justValue": true,
+        "useGroupItems": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "x": 279.6666717529297,
+        "y": 326,
+        "wires": [
+            [
+                "1782be91.a92751"
+            ]
+        ]
+    },
+    {
+        "id": "a278155e.77f7e8",
+        "type": "OPCUA-IIoT-Write",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "x": 590,
+        "y": 540,
+        "wires": [
+            [
+                "4850c880.9cfbf8"
+            ]
+        ]
+    },
+    {
+        "id": "4850c880.9cfbf8",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 740,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "383b7590.b0c392",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "value to write",
+        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_Interface_Dashboard\".\"Publish\".\"OrderWorkpieceButton\".\"s_type\"',\n        \"datatypeName\":'String'},\n        ]\n\nmsg.valuesToWrite = [\n    \"GREEN\"\n    ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "a278155e.77f7e8"
+            ]
+        ]
+    },
+    {
+        "id": "b134c2a7.afaaa",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 540,
+        "wires": [
+            [
+                "383b7590.b0c392"
+            ]
+        ]
+    },
+    {
+        "id": "6903f2b5.aa5974",
+        "type": "OPCUA-IIoT-Write",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "x": 590,
+        "y": 640,
+        "wires": [
+            [
+                "ec7abe41.ca974"
+            ]
+        ]
+    },
+    {
+        "id": "ec7abe41.ca974",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 740,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2287145f.81d28c",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "value to write",
+        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"PRG_HBW_Ablauf_DB\".\"Flag\"',\n        \"datatypeName\":'Int16'},\n        ]\n\nmsg.valuesToWrite = [\n    6\n    ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 640,
+        "wires": [
+            [
+                "6903f2b5.aa5974"
+            ]
+        ]
+    },
+    {
+        "id": "61019ec0.21d96",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 640,
+        "wires": [
+            [
+                "2287145f.81d28c"
+            ]
+        ]
+    },
+    {
+        "id": "3e12e5fe.62d94a",
+        "type": "OPCUA-IIoT-Write",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "x": 590,
+        "y": 740,
+        "wires": [
+            [
+                "e96502bc.05d228"
+            ]
+        ]
+    },
+    {
+        "id": "e96502bc.05d228",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 740,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab471955.7d1",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "value to write",
+        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"Parameters\".\"DoSaw\"',\n        \"datatypeName\":'Boolean'},\n        ]\n        \n        \n//{   \"name\":\"\",\n//        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"x_Color_Sensor_Calibration\"',\n//        \"datatypeName\":'Boolean'},        \n\nmsg.valuesToWrite = [\n    false\n    ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 740,
+        "wires": [
+            [
+                "3e12e5fe.62d94a"
+            ]
+        ]
+    },
+    {
+        "id": "9ff20030.d195a",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 740,
+        "wires": [
+            [
+                "ab471955.7d1"
+            ]
+        ]
+    },
+    {
+        "id": "4b84c7fd.1d0a5",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "Integer:",
+        "info": "",
+        "x": 210,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "99b03ee5.fc6e38",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "Boolean",
+        "info": "",
+        "x": 220,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "9c74e7f8.70644",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "String:",
+        "info": "",
+        "x": 210,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "3a5fc3c9.daeadc",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "OPC/UA voorbeelden:",
+        "info": "",
+        "x": 180,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9901959.7057268",
+        "type": "OPCUA-IIoT-Write",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "x": 590,
+        "y": 1040,
+        "wires": [
+            [
+                "44e02261.f67f7c"
+            ]
+        ]
+    },
+    {
+        "id": "44e02261.f67f7c",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 740,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d04260e.6e4558",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "value to write",
+        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"PRG_HBW_Ablauf_DB\".\"li_StepCase\"',\n        \"datatypeName\":'Int16'},\n        ]\n\nmsg.valuesToWrite = [\n    60\n    ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 1040,
+        "wires": [
+            [
+                "9901959.7057268"
+            ]
+        ]
+    },
+    {
+        "id": "9053d049.b7b598",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 1040,
+        "wires": [
+            [
+                "8d04260e.6e4558"
+            ]
+        ]
+    },
+    {
+        "id": "e21d85b.15abf78",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "StepCounter aanpassen:",
+        "info": "",
+        "x": 270,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "f735c9f8.da5b28",
+        "type": "OPCUA-IIoT-Write",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "x": 590,
+        "y": 800,
+        "wires": [
+            [
+                "df806290.180e5"
+            ]
+        ]
+    },
+    {
+        "id": "df806290.180e5",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": false,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 740,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2f0f16f.e27b48",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "value to write",
+        "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"write\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"Parameters\".\"DoSaw\"',\n        \"datatypeName\":'Boolean'},\n        ]\n        \n        \n//{   \"name\":\"\",\n//        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"x_Color_Sensor_Calibration\"',\n//        \"datatypeName\":'Boolean'},        \n\nmsg.valuesToWrite = [\n    true\n    ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 800,
+        "wires": [
+            [
+                "f735c9f8.da5b28"
+            ]
+        ]
+    },
+    {
+        "id": "f880403b.edc818",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 800,
+        "wires": [
+            [
+                "e2f0f16f.e27b48"
+            ]
+        ]
+    },
+    {
+        "id": "42d65573.dd4274",
+        "type": "OPCUA-IIoT-Inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "injectType": "listen",
+        "payload": "1000",
+        "payloadType": "num",
+        "topic": "",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "startDelay": "8",
+        "name": "listen",
+        "addressSpaceItems": [
+            {
+                "name": "DoOven",
+                "nodeId": "ns=3;s=\"gtyp_Setup\".\"di_Pos_Horizontal\"",
+                "datatypeName": ""
+            },
+            {
+                "name": "",
+                "nodeId": " ns=3;s=\"gtyp_Setup\".\"di_Pos_Rotate\"",
+                "datatypeName": ""
+            },
+            {
+                "name": "",
+                "nodeId": " ns=3;s=\"gtyp_Setup\".\"i_Pos_Selection\"",
+                "datatypeName": ""
+            },
+            {
+                "name": "",
+                "nodeId": "ns=3;s=\"gtyp_Setup\".\"di_Pos_Vertical\"",
+                "datatypeName": ""
+            },
+            {
+                "name": "",
+                "nodeId": " ns=3;s=\"gtyp_Setup\".\"x_Set_Pos_Activ\"",
+                "datatypeName": ""
+            }
+        ],
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "7a31158.634cbec"
+            ]
+        ]
+    },
+    {
+        "id": "7a31158.634cbec",
+        "type": "OPCUA-IIoT-Listener",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "action": "subscribe",
+        "queueSize": "5",
+        "name": "",
+        "topic": "",
+        "justValue": true,
+        "useGroupItems": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "x": 280,
+        "y": 140,
+        "wires": [
+            [
+                "21184626.bb909a",
+                "5f521cf3.a8ac5c",
+                "e1584479.94bf28"
+            ]
+        ]
+    },
+    {
+        "id": "21184626.bb909a",
+        "type": "ui_gauge",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "group": "6cb2dbc1.59fb64",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "2",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3f6de99.2189416",
+        "type": "OPCUA-IIoT-Inject",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "injectType": "listen",
+        "payload": "1000",
+        "payloadType": "num",
+        "topic": "",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "startDelay": "8",
+        "name": "listen",
+        "addressSpaceItems": [
+            {
+                "name": "Ping:",
+                "nodeId": "ns=3;s=\"Parameters\".\"DoOven\"",
+                "datatypeName": ""
+            }
+        ],
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "6872cfba.57a1f8"
+            ]
+        ]
+    },
+    {
+        "id": "6872cfba.57a1f8",
+        "type": "OPCUA-IIoT-Listener",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "connector": "74a7d84.2350d28",
+        "action": "subscribe",
+        "queueSize": "5",
+        "name": "",
+        "topic": "",
+        "justValue": true,
+        "useGroupItems": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "ec911008.7fbea",
+                "563efa94.13b3cc"
+            ]
+        ]
+    },
+    {
+        "id": "1fe84c4e.c759ec",
+        "type": "ui_switch",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "",
+        "label": "TestSwitch",
+        "tooltip": "",
+        "group": "6cb2dbc1.59fb64",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 790,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "563efa94.13b3cc",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "Scripttest",
+        "func": "\nvar newMsg = {payload: msg.payload.value.value};\n//if( newMsg === true)\n//{\n//msg.payload= [true]\n//}\n//else{\n// msg.payload= [false]  \n//}\n\n//msg.payload=newMsg\nreturn newMsg;\n\n\n\n//if(msg.payload == true){\n//    msg.valuesToWrite = [true]\n//}else{\n//    msg.valuesToWrite = [false]\n//}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "1fe84c4e.c759ec",
+                "39153fb8.4c5c4"
+            ]
+        ]
+    },
+    {
+        "id": "39153fb8.4c5c4",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "ExtractTest",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 790,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5f521cf3.a8ac5c",
+        "type": "debug",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "name": "PingPing",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 480,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e1584479.94bf28",
+        "type": "ui_text",
+        "z": "3f3c6013.7a3158",
+        "d": true,
+        "group": "6cb2dbc1.59fb64",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 680,
         "y": 80,
         "wires": []
     },
