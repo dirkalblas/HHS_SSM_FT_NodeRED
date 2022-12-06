@@ -3532,9 +3532,9 @@
         "y": 1060,
         "wires": [
             [
+                "6d9f4f45.374998",
                 "ca91e6e0.dcb9d",
-                "d19e2bd1.d01ee",
-                "6d9f4f45.374998"
+                "d19e2bd1.d01ee"
             ]
         ]
     },
@@ -3549,6 +3549,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
         "x": 290,
         "y": 1020,
         "wires": []
@@ -3561,6 +3563,9 @@
         "func": "msg.payload = msg.payload.data;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 290,
         "y": 1100,
         "wires": [
@@ -3692,6 +3697,9 @@
         "func": "var date = new Date(msg.payload.ts);\nmsg.payload = date.toLocaleString('de-DE');\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 310,
         "y": 1060,
         "wires": [
@@ -6828,7 +6836,7 @@
         "type": "debug",
         "z": "c9e497d1.175d6",
         "name": "write NFC command to OPC",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6968,7 +6976,7 @@
         "type": "debug",
         "z": "c9e497d1.175d6",
         "name": "write NFC input to OPC values",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7231,7 +7239,7 @@
         "type": "debug",
         "z": "c9e497d1.175d6",
         "name": "PLC out to NFC",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -7473,8 +7481,8 @@
         "wires": [
             [
                 "820fb79d.d05f8",
-                "cc8207a4.176d1",
-                "d735bd70.23af7"
+                "d735bd70.23af7",
+                "cc8207a4.176d1"
             ]
         ]
     },
@@ -7501,6 +7509,9 @@
         "func": "msg.payload = msg.payload.data;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 310,
         "y": 180,
         "wires": [
@@ -7517,6 +7528,9 @@
         "func": "var date = new Date(msg.payload.ts);\nmsg.payload = date.toLocaleString('de-DE');\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 330,
         "y": 140,
         "wires": [
@@ -7674,305 +7688,13 @@
         "wires": []
     },
     {
-        "id": "5de8a98d.917548",
-        "type": "status",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "",
-        "scope": [
-            "ffb2ceeb84e1a103"
-        ],
-        "x": 120,
-        "y": 940,
-        "wires": [
-            [
-                "687fe13880e0d384",
-                "5fc54d31.4959a4"
-            ]
-        ]
-    },
-    {
-        "id": "e700ba8.c438848",
-        "type": "trigger",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "",
-        "op1": "0",
-        "op2": "1",
-        "op1type": "str",
-        "op2type": "num",
-        "duration": "10",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "s",
-        "reset": "0",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 510,
-        "y": 940,
-        "wires": [
-            [
-                "b3f6a91.ae995d8",
-                "0ed7f571ee3c1306"
-            ]
-        ]
-    },
-    {
-        "id": "5fc54d31.4959a4",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "connection lost?",
-        "func": "var local=global.get('data') || {};\n\nif (local.OPC_con_loss===undefined)//test exists\n    {\n    local.OPC_con_loss=0;\n    }\n\n\n//if (msg.payload === \"Internal Error\")\n//    { \n//    msg.state = 1 ;\n//    }\n//else\n//    {\n ////   msg.status.text === \"listening (1)\" ? msg.state = 0 : msg.state = 1\n//    }\n\n\nif (msg.status.text === \"listening (1)\") {\n    local.OPC_con_loss=0;    \n    global.set('data',local);\n    msg.state = 0;\n} else { \n    msg.state = 1;\n}\n\nreturn {\"payload\": msg.state}\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 940,
-        "wires": [
-            [
-                "e700ba8.c438848",
-                "e3e38605977ef049"
-            ]
-        ]
-    },
-    {
-        "id": "13b660ee.136a17",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Request Token",
-        "func": "msg.payload = {\n    \"client_id\": \"node-red-editor\",\n    \"grant_type\": \"password\",\n    \"scope\": \"*\",\n    \"username\": \"type or username\",\n    \"password\": \"type your password\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 1000,
-        "wires": [
-            [
-                "9b6e28c4.7793d8"
-            ]
-        ]
-    },
-    {
-        "id": "9b6e28c4.7793d8",
-        "type": "http request",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Token",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://localhost:1880/auth/token",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 490,
-        "y": 1000,
-        "wires": [
-            [
-                "f87f1c2.5687be"
-            ]
-        ]
-    },
-    {
-        "id": "f87f1c2.5687be",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Confirm token",
-        "func": "var status = msg.statusCode;\nvar token = '';\nmsg.headers ={};\n\n\nswitch(status){\n    case 200:\n        node.log(\"Secure restart\");\n        token = JSON.parse(msg.payload);\n        token = 'Bearer '+token.access_token;\n        msg.headers = {\n            \"Authorization\": token,\n            \"Node-RED-Deployment-Type\":\"reload\"\n        }\nmsg.payload =\"\";\n        break;\n    case 204:\n        node.log(\"Secure without restart\");\n        global.set('result','\tSuccess - with no further content');\n        break;\n    case 400:\n        node.warn(\"Bad request\");\n        break;\n    case 401:\n        node.warn(\"Not authorized\");\n        break;\n    case 403:\n        node.warn(\"Forbidden\");\n        break;\n    case 404:\n        node.log(\"Unsecure restart\");\n        msg.headers = {\n            \"Node-RED-Deployment-Type\":\"reload\"\n        }\n        break;\n    case 409:\n        node.warn(\"Version mismatch\");\n        break;\n    case 500:\n        node.error(\"Server Error\");\n        break;\n    default:\n        node.warn(\"Unknown Error\");\n       break;\n}\n\nmsg.payload = \"\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 1000,
-        "wires": [
-            [
-                "80b00c8d.e5f458"
-            ]
-        ],
-        "info": "Restart of Node-Red flows.\nWill check if the action needs security or not.\nNote: if the first 5 attemps return a statuscode 403 'forbidden'\nthen the server will break and only way to recover is then to\nrestart the service"
-    },
-    {
-        "id": "80b00c8d.e5f458",
-        "type": "http request",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Restart",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "http://localhost:1880/flows",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [],
-        "x": 880,
-        "y": 1000,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8f58c398.49c1",
-        "type": "comment",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Restart Flows when OPC UA connection is lost",
-        "info": "",
-        "x": 220,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "b3f6a91.ae995d8",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "count connection loss",
-        "func": "var count=0;\nvar local=global.get('data') || {};\nif (local.OPC_con_loss===undefined)//test exists\n{\nlocal.OPC_con_loss=0;\n}\n\ncount = local.OPC_con_loss;\nif (msg.payload === 1){\n    count = count + 1;\n    local.OPC_con_loss = count;\n    global.set('data',local);\n}\n\nif (local.OPC_con_loss > 5)\n{\nmsg.payload = 0;\n}\n\nmsg.con_loss = local.OPC_con_loss;    \n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": msg.payload,\n    \"con_loss\": msg.con_loss,\n};\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 940,
-        "wires": [
-            [
-                "51071c98.44de34",
-                "8be09282.e5a57",
-                "c19ab7d6.87689"
-            ]
-        ]
-    },
-    {
-        "id": "700cb791.07eed",
-        "type": "ui_toast",
-        "z": "67640d21.18442c",
-        "d": true,
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 1250,
-        "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "51071c98.44de34",
-        "type": "rbe",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "",
-        "func": "deadband",
-        "gap": "",
-        "start": "",
-        "inout": "in",
-        "septopics": false,
-        "property": "payload",
-        "topi": "topic",
-        "x": 130,
-        "y": 1000,
-        "wires": [
-            [
-                "13b660ee.136a17"
-            ]
-        ]
-    },
-    {
-        "id": "8be09282.e5a57",
-        "type": "switch",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "",
-        "property": "con_loss",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "5",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 930,
-        "y": 940,
-        "wires": [
-            [
-                "ae3adf2f.302678"
-            ]
-        ]
-    },
-    {
-        "id": "ae3adf2f.302678",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Message",
-        "func": "\nmsg.payload = \"OPC UA Connection failed check cables!\"\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 940,
-        "wires": [
-            [
-                "700cb791.07eed"
-            ]
-        ]
-    },
-    {
         "id": "7b5bb55.0a1f9cc",
         "type": "comment",
         "z": "67640d21.18442c",
         "name": "HBW View",
         "info": "",
         "x": 100,
-        "y": 1600,
-        "wires": []
-    },
-    {
-        "id": "c19ab7d6.87689",
-        "type": "debug",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "OPC connection lost?",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 980,
-        "y": 900,
+        "y": 1400,
         "wires": []
     },
     {
@@ -7988,7 +7710,7 @@
         "format": "",
         "layout": "row-spread",
         "x": 140,
-        "y": 700,
+        "y": 780,
         "wires": []
     },
     {
@@ -8010,7 +7732,7 @@
         "payloadType": "bool",
         "topic": "Signal1",
         "x": 310,
-        "y": 700,
+        "y": 780,
         "wires": [
             [
                 "17119f83.6d9018"
@@ -8029,7 +7751,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 700,
+        "y": 780,
         "wires": [
             [
                 "91a6be8b.21bf58"
@@ -8046,7 +7768,7 @@
         "showStatusActivities": false,
         "showErrors": true,
         "x": 670,
-        "y": 700,
+        "y": 780,
         "wires": [
             [
                 "6ce5989b.567eb8"
@@ -8066,7 +7788,7 @@
         "negateFilter": false,
         "filters": [],
         "x": 840,
-        "y": 700,
+        "y": 780,
         "wires": [
             []
         ]
@@ -8078,18 +7800,7 @@
         "name": "Acknowledge Errors",
         "info": "",
         "x": 110,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "64b09773.8f8c5",
-        "type": "comment",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "Restart OPCUA/MQTT Interface",
-        "info": "",
-        "x": 170,
-        "y": 1060,
+        "y": 740,
         "wires": []
     },
     {
@@ -8105,7 +7816,7 @@
         "format": "",
         "layout": "row-spread",
         "x": 190,
-        "y": 1500,
+        "y": 1300,
         "wires": []
     },
     {
@@ -8127,7 +7838,7 @@
         "payloadType": "bool",
         "topic": "Signal1",
         "x": 400,
-        "y": 1500,
+        "y": 1300,
         "wires": [
             [
                 "62d6921b5b21b566"
@@ -8152,8 +7863,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 610,
-        "y": 2060,
+        "x": 630,
+        "y": 1760,
         "wires": [
             []
         ]
@@ -8169,8 +7880,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 1860,
+        "x": 450,
+        "y": 1560,
         "wires": [
             [
                 "1fe94d59.5f666b"
@@ -8189,8 +7900,8 @@
         "label": "1",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 610,
-        "y": 2020,
+        "x": 630,
+        "y": 1720,
         "wires": []
     },
     {
@@ -8205,8 +7916,8 @@
         "label": "2",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 770,
-        "y": 2020,
+        "x": 790,
+        "y": 1720,
         "wires": []
     },
     {
@@ -8221,8 +7932,8 @@
         "label": "3",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 950,
-        "y": 2020,
+        "x": 970,
+        "y": 1720,
         "wires": []
     },
     {
@@ -8243,8 +7954,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 770,
-        "y": 2060,
+        "x": 790,
+        "y": 1760,
         "wires": [
             []
         ]
@@ -8267,8 +7978,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 950,
-        "y": 2060,
+        "x": 970,
+        "y": 1760,
         "wires": [
             []
         ]
@@ -8285,8 +7996,8 @@
         "label": "A",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 430,
-        "y": 2060,
+        "x": 450,
+        "y": 1760,
         "wires": []
     },
     {
@@ -8301,8 +8012,8 @@
         "label": "B",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 430,
-        "y": 2100,
+        "x": 450,
+        "y": 1800,
         "wires": []
     },
     {
@@ -8323,8 +8034,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 610,
-        "y": 2100,
+        "x": 630,
+        "y": 1800,
         "wires": [
             []
         ]
@@ -8347,8 +8058,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 770,
-        "y": 2100,
+        "x": 790,
+        "y": 1800,
         "wires": [
             []
         ]
@@ -8371,8 +8082,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 950,
-        "y": 2100,
+        "x": 970,
+        "y": 1800,
         "wires": [
             []
         ]
@@ -8389,8 +8100,8 @@
         "label": "C",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 430,
-        "y": 2140,
+        "x": 450,
+        "y": 1840,
         "wires": []
     },
     {
@@ -8411,8 +8122,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 610,
-        "y": 2140,
+        "x": 630,
+        "y": 1840,
         "wires": [
             []
         ]
@@ -8435,8 +8146,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 770,
-        "y": 2140,
+        "x": 790,
+        "y": 1840,
         "wires": [
             []
         ]
@@ -8459,8 +8170,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 950,
-        "y": 2140,
+        "x": 970,
+        "y": 1840,
         "wires": [
             []
         ]
@@ -8476,8 +8187,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 1800,
+        "x": 620,
+        "y": 1500,
         "wires": [
             [
                 "806f70b7.d8aa7"
@@ -8498,8 +8209,8 @@
         "showErrors": true,
         "parseStrings": false,
         "historyDays": "",
-        "x": 770,
-        "y": 1800,
+        "x": 790,
+        "y": 1500,
         "wires": [
             [
                 "87a9f589.db8b7",
@@ -8519,8 +8230,8 @@
         "activateFilters": false,
         "negateFilter": false,
         "filters": [],
-        "x": 930,
-        "y": 1800,
+        "x": 950,
+        "y": 1500,
         "wires": [
             []
         ]
@@ -8536,8 +8247,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 460,
-        "y": 1980,
+        "x": 480,
+        "y": 1680,
         "wires": []
     },
     {
@@ -8551,8 +8262,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 130,
-        "y": 1860,
+        "x": 150,
+        "y": 1560,
         "wires": [
             [
                 "519bde77.62dc38",
@@ -8577,8 +8288,8 @@
         "func": "var state = msg.payload.HBW_A2_s_state\nvar type = msg.payload.HBW_A2_s_type\nvar id = msg.payload.HBW_A2_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.A2_color===undefined)//test exists\n    {\n    local.A2_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.A2_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.A2_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.A2_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.A2_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 610,
-        "y": 1860,
+        "x": 630,
+        "y": 1560,
         "wires": [
             [
                 "97d8fd6f.71afc"
@@ -8593,8 +8304,8 @@
         "func": "var state = msg.payload.HBW_A3_s_state\nvar type = msg.payload.HBW_A3_s_type\nvar id = msg.payload.HBW_A3_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.A3_color===undefined)//test exists\n    {\n    local.A3_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.A3_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.A3_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.A3_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.A3_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 770,
-        "y": 1860,
+        "x": 790,
+        "y": 1560,
         "wires": [
             [
                 "13c5d2f4.4bdb2d"
@@ -8609,8 +8320,8 @@
         "func": "var state = msg.payload.HBW_B1_s_state\nvar type = msg.payload.HBW_B1_s_type\nvar id = msg.payload.HBW_B1_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.B1_color===undefined)//test exists\n    {\n    local.B1_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.B1_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.B1_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.B1_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.B1_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 440,
-        "y": 1900,
+        "x": 460,
+        "y": 1600,
         "wires": [
             [
                 "e69820d0.abcfa"
@@ -8625,8 +8336,8 @@
         "func": "var state = msg.payload.HBW_B2_s_state\nvar type = msg.payload.HBW_B2_s_type\nvar id = msg.payload.HBW_B2_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.B2_color===undefined)//test exists\n    {\n    local.B2_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.B2_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.B2_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.B2_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.B2_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 620,
-        "y": 1900,
+        "x": 640,
+        "y": 1600,
         "wires": [
             [
                 "d888827.382a28"
@@ -8641,8 +8352,8 @@
         "func": "var state = msg.payload.HBW_B3_s_state\nvar type = msg.payload.HBW_B3_s_type\nvar id = msg.payload.HBW_B3_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.B3_color===undefined)//test exists\n    {\n    local.B3_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.B3_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.B3_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.B3_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.B3_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 1900,
+        "x": 800,
+        "y": 1600,
         "wires": [
             [
                 "1f3b7459.e4427c"
@@ -8655,8 +8366,8 @@
         "z": "67640d21.18442c",
         "name": "End",
         "info": "",
-        "x": 110,
-        "y": 2180,
+        "x": 130,
+        "y": 1880,
         "wires": []
     },
     {
@@ -8667,8 +8378,8 @@
         "func": "var state = msg.payload.HBW_C1_s_state\nvar type = msg.payload.HBW_C1_s_type\nvar id = msg.payload.HBW_C1_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.C1_color===undefined)//test exists\n    {\n    local.C1_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.C1_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.C1_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.C1_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.C1_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 440,
-        "y": 1940,
+        "x": 460,
+        "y": 1640,
         "wires": [
             [
                 "add5ac17.77e74"
@@ -8683,8 +8394,8 @@
         "func": "var state = msg.payload.HBW_C2_s_state\nvar type = msg.payload.HBW_C2_s_type\nvar id = msg.payload.HBW_C2_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.C2_color===undefined)//test exists\n    {\n    local.C2_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.C2_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.C2_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.C2_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.C2_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 620,
-        "y": 1940,
+        "x": 640,
+        "y": 1640,
         "wires": [
             [
                 "f271938a.53f6a8"
@@ -8699,8 +8410,8 @@
         "func": "var state = msg.payload.HBW_C3_s_state\nvar type = msg.payload.HBW_C3_s_type\nvar id = msg.payload.HBW_C3_s_id\n\nvar local=global.get('HBW_Rack_state') || {};\nif (local.C3_color===undefined)//test exists\n    {\n    local.C3_color=\"\";\n    }\n\nswitch(state)\n{\n    case \"RAW\":\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case \"PROCESSED\":\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.label = \"\";\n} \n\nswitch(type)\n{\n    case \"WHITE\":\n        msg.TXT_color = \"white\";\n        local.C3_color = \"white\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"RED\":\n        msg.TXT_color = \"red\";\n        local.C3_color = \"red\";    \n        global.set('HBW_Rack_state',local);\n        break;\n        \n    case \"BLUE\":\n        msg.TXT_color = \"blue\";\n        local.C3_color = \"blue\";    \n        global.set('HBW_Rack_state',local);\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.TXT_color = \"white\";\n        local.C3_color = \"\";    \n        global.set('HBW_Rack_state',local);\n\n} \n\n\nswitch(id)\n{\n    case \"\":\n        msg.BG_colour = \"white\";\n        msg.TXT_colour = \"white\";\n        msg.label = \"\";\n        break;\n\n    case \"0\":\n        msg.BG_colour = \"lightgray\";\n        msg.TXT_color = \"lightgray\";\n        msg.label = \"\";\n        break;\n\n    default:\n        // Farbe auf normal setzen\n        msg.BG_colour = \"lightgray\";\n} \n\n\n\nreturn {\n    \"topic\": msg.topic,\n    \"payload\": {\n        \"topic\": (msg.topic),\n        \"label\": (msg.label),\n        \"BG_color\":(msg.BG_colour),\n        \"TXT_color\":(msg.TXT_color),\n\n    }\n};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 1940,
+        "x": 800,
+        "y": 1640,
         "wires": [
             [
                 "29ad8f7e.5bb9d"
@@ -8714,7 +8425,7 @@
         "name": "Move to Park Position",
         "info": "",
         "x": 120,
-        "y": 760,
+        "y": 840,
         "wires": []
     },
     {
@@ -8730,7 +8441,7 @@
         "format": "",
         "layout": "row-spread",
         "x": 140,
-        "y": 800,
+        "y": 880,
         "wires": []
     },
     {
@@ -8752,7 +8463,7 @@
         "payloadType": "bool",
         "topic": "Signal1",
         "x": 320,
-        "y": 800,
+        "y": 880,
         "wires": [
             [
                 "28eac347.dcbb0c"
@@ -8771,7 +8482,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 800,
+        "y": 880,
         "wires": [
             [
                 "9e606815.26435"
@@ -8788,7 +8499,7 @@
         "showStatusActivities": false,
         "showErrors": true,
         "x": 670,
-        "y": 800,
+        "y": 880,
         "wires": [
             [
                 "91162cc6.edef3"
@@ -8808,403 +8519,9 @@
         "negateFilter": false,
         "filters": [],
         "x": 830,
-        "y": 800,
+        "y": 880,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "f320df2a.8ed738",
-        "type": "ui_text",
-        "z": "67640d21.18442c",
-        "group": "c863b9e5.ef9b6",
-        "order": 8,
-        "width": 6,
-        "height": 1,
-        "name": "Fill HBW rack",
-        "label": "Fill HBW rack (during 60s after PLC startup):",
-        "format": "",
-        "layout": "row-spread",
-        "x": 55,
-        "y": 380,
-        "wires": [],
-        "l": false
-    },
-    {
-        "id": "fdb0ba7c.a5a768",
-        "type": "ui_button",
-        "z": "67640d21.18442c",
-        "name": "",
-        "group": "c863b9e5.ef9b6",
-        "order": 9,
-        "width": 2,
-        "height": 1,
-        "passthru": false,
-        "label": "FILL",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "done",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "Signal1",
-        "x": 385,
-        "y": 380,
-        "wires": [
-            [
-                "32a4df21.95876"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "32a4df21.95876",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "name": "declare values",
-        "func": "//var ts = new Date().toISOString();\nvar wert = msg.payload\n\n//msg.nodetype = \"inject\";\nmsg.payload.injectType = \"write\";\n\nmsg.payload.addressSpaceItems = [\n        {\"nodeId\":'ns=3;s=\"gtyp_Setup\".\"x_Fill_Rack_HBW\"',\n        \"datatypeName\":'Boolean'},\n        ]\n\n//msg.payload[\"ts\"] = ts;\nmsg.payload.valuesToWrite = [wert];\n\nreturn msg;\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 380,
-        "wires": [
-            [
-                "250b84bd.1dd06c"
-            ]
-        ]
-    },
-    {
-        "id": "250b84bd.1dd06c",
-        "type": "OPCUA-IIoT-Write",
-        "z": "67640d21.18442c",
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "x": 690,
-        "y": 380,
-        "wires": [
-            [
-                "427ba20e.963734"
-            ]
-        ]
-    },
-    {
-        "id": "427ba20e.963734",
-        "type": "OPCUA-IIoT-Response",
-        "z": "67640d21.18442c",
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 840,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "59b9c6f3.cb6368",
-        "type": "comment",
-        "z": "67640d21.18442c",
-        "name": "Fill HBW Rack",
-        "info": "",
-        "x": 90,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "bc4b9ec0.d7cd6",
-        "type": "comment",
-        "z": "67640d21.18442c",
-        "name": "Check if Fill is allowed",
-        "info": "",
-        "x": 120,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "b5e45e24.a8418",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "name": "format Button",
-        "func": "var state = msg.payload.HBW_Fill_active\n\n\nswitch(state)\n{\n    case false:\n        msg.enabled = false;\n        msg.label = \"<i class='fa fa-square fa-3x'></i>\";\n        break;\n    case true:\n        msg.enabled = true;\n        msg.label = \"<i class='fa fa-circle fa-3x'></i>\";\n        break;\n    default:\n        // label löschen\n        msg.enabled = false;\n        msg.label = \"\";\n} \n\n\nreturn {\n    \"enabled\": (msg.enabled),\n    \"payload\": { \n        \"label\": (msg.label),\n//        \"BG_color\":(msg.BG_colour),\n//        \"TXT_color\":(msg.TXT_color),\n       }\n\n};\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 380,
-        "wires": [
-            [
-                "fdb0ba7c.a5a768"
-            ]
-        ]
-    },
-    {
-        "id": "332085ac.18b0da",
-        "type": "debug",
-        "z": "67640d21.18442c",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 610,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "6f9e0853.2dbe5",
-        "type": "OPCUA-IIoT-Listener",
-        "z": "67640d21.18442c",
-        "d": true,
-        "connector": "74a7d84.2350d28",
-        "action": "subscribe",
-        "queueSize": "4",
-        "name": "Fill active?",
-        "topic": "",
-        "justValue": false,
-        "useGroupItems": false,
-        "showStatusActivities": true,
-        "showErrors": true,
-        "x": 430,
-        "y": 540,
-        "wires": [
-            [
-                "c63fc859.a84c2",
-                "332085ac.18b0da"
-            ]
-        ]
-    },
-    {
-        "id": "c63fc859.a84c2",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "name": "values to read",
-        "func": "//msg.nodetype = \"inject\";\nmsg.payload.injectType = \"read\";\n\nmsg.payload.addressSpaceItems = [\n    //act. Pos. Blue\n    {\n        \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"x_Start_TON_Fill_HBW\"',\n        \"datatypeName\":'Boolean'},\n    {\n        \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"r_Version_SPS\"',\n        \"datatypeName\":'Float'},\n\n        ]\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 540,
-        "wires": [
-            [
-                "5ba1528c.c42504"
-            ]
-        ]
-    },
-    {
-        "id": "5ba1528c.c42504",
-        "type": "OPCUA-IIoT-Read",
-        "z": "67640d21.18442c",
-        "d": true,
-        "attributeId": "13",
-        "maxAge": 1,
-        "depth": 1,
-        "connector": "74a7d84.2350d28",
-        "name": "",
-        "justValue": true,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "parseStrings": false,
-        "historyDays": "",
-        "x": 810,
-        "y": 540,
-        "wires": [
-            [
-                "9e0f0951.c8e48",
-                "12a0a8c0.b3ab47"
-            ]
-        ]
-    },
-    {
-        "id": "9e0f0951.c8e48",
-        "type": "OPCUA-IIoT-Response",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "",
-        "compressStructure": false,
-        "showStatusActivities": false,
-        "showErrors": true,
-        "activateUnsetFilter": false,
-        "activateFilters": false,
-        "negateFilter": false,
-        "filters": [],
-        "x": 980,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "12a0a8c0.b3ab47",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "name": "Output Object",
-        "func": "var new_msg = { payload: \"\" };\nvar ReadData_out =   {\n                    //Output Objects\n                    HBW_Fill_active: 1,\n                    PLC_version: 0.0,\n                    }\n\nReadData_out.HBW_Fill_active = msg.payload.value[0].value.value;        //[0] \nReadData_out.PLC_version = msg.payload.value[1].value.value;        //[0] \n\nnew_msg.payload = ReadData_out;\n\nreturn new_msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1000,
-        "y": 500,
-        "wires": [
-            [
-                "b5e45e24.a8418",
-                "24faace0.d2fa2c"
-            ]
-        ]
-    },
-    {
-        "id": "c6044937.70871",
-        "type": "ui_text",
-        "z": "67640d21.18442c",
-        "group": "c863b9e5.ef9b6",
-        "order": 2,
-        "width": 2,
-        "height": 1,
-        "name": "",
-        "label": "PLC:",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 1390,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "24faace0.d2fa2c",
-        "type": "function",
-        "z": "67640d21.18442c",
-        "name": "single value",
-        "func": "var new_msg = { payload: \"\" };\nvar output = 0.0 ;\n\noutput = msg.payload.PLC_version; \n\noutput = Math.round(output*100)/100;\n\nnew_msg.payload = output;\n\nreturn new_msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1210,
-        "y": 500,
-        "wires": [
-            [
-                "c6044937.70871"
-            ]
-        ]
-    },
-    {
-        "id": "bc0de89e.8ab8a8",
-        "type": "ui_text",
-        "z": "67640d21.18442c",
-        "group": "c863b9e5.ef9b6",
-        "order": 3,
-        "width": 2,
-        "height": 1,
-        "name": "",
-        "label": "HMI:",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 1390,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "9fdf4566.f4d9",
-        "type": "inject",
-        "z": "67640d21.18442c",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "1.4",
-        "payloadType": "str",
-        "x": 1230,
-        "y": 600,
-        "wires": [
-            [
-                "bc0de89e.8ab8a8"
-            ]
-        ]
-    },
-    {
-        "id": "3362f20.edea20e",
-        "type": "ui_text",
-        "z": "67640d21.18442c",
-        "group": "c863b9e5.ef9b6",
-        "order": 1,
-        "width": 4,
-        "height": 1,
-        "name": "",
-        "label": "Version Index",
-        "format": "",
-        "layout": "row-spread",
-        "x": 1220,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "d7b1921a.4a4c18",
-        "type": "inject",
-        "z": "67640d21.18442c",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "0.0",
-        "payloadType": "str",
-        "x": 1230,
-        "y": 540,
-        "wires": [
-            [
-                "c6044937.70871"
-            ]
-        ]
-    },
-    {
-        "id": "431d83bb.f9c1b4",
-        "type": "inject",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "65",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 430,
-        "y": 600,
-        "wires": [
-            [
-                "c63fc859.a84c2"
-            ]
         ]
     },
     {
@@ -9224,8 +8541,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
-        "y": 1800,
+        "x": 110,
+        "y": 1500,
         "wires": [
             [
                 "aac7d0313a29a6a2"
@@ -9243,8 +8560,8 @@
         "name": "",
         "topic": "",
         "showErrors": true,
-        "x": 250,
-        "y": 1800,
+        "x": 270,
+        "y": 1500,
         "wires": [
             [
                 "ffb2ceeb84e1a103",
@@ -9264,54 +8581,9 @@
         "label": "",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 430,
-        "y": 2020,
+        "x": 450,
+        "y": 1720,
         "wires": []
-    },
-    {
-        "id": "d0e62d748cbab80e",
-        "type": "inject",
-        "z": "67640d21.18442c",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 540,
-        "wires": [
-            [
-                "a18e5e96a1640e1b"
-            ]
-        ]
-    },
-    {
-        "id": "a18e5e96a1640e1b",
-        "type": "OPCUA-IIoT-Node",
-        "z": "67640d21.18442c",
-        "d": true,
-        "injectType": "listen",
-        "nodeId": "ns=3;s=\"gtyp_Setup\".\"x_Start_TON_Fill_HBW\"",
-        "datatype": "",
-        "value": "",
-        "name": "",
-        "topic": "",
-        "showErrors": true,
-        "x": 270,
-        "y": 540,
-        "wires": [
-            [
-                "6f9e0853.2dbe5"
-            ]
-        ]
     },
     {
         "id": "be6eea9c387faf5a",
@@ -9323,8 +8595,8 @@
             "a9183d92fc8444ea",
             "a92ebaead0b4c160"
         ],
-        "x": 215,
-        "y": 1920,
+        "x": 235,
+        "y": 1620,
         "wires": []
     },
     {
@@ -9340,68 +8612,14 @@
         "useGroupItems": false,
         "showStatusActivities": false,
         "showErrors": true,
-        "x": 440,
-        "y": 1800,
+        "x": 460,
+        "y": 1500,
         "wires": [
             [
                 "17ea203c.41f54",
                 "1d8501372709b64a"
             ]
         ]
-    },
-    {
-        "id": "687fe13880e0d384",
-        "type": "debug",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "debug 10",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 300,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "e3e38605977ef049",
-        "type": "debug",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "debug 13",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "0ed7f571ee3c1306",
-        "type": "debug",
-        "z": "67640d21.18442c",
-        "d": true,
-        "name": "trigger",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 900,
-        "wires": []
     },
     {
         "id": "960ba16d2d8ad053",
@@ -9412,7 +8630,7 @@
             "ffb2ceeb84e1a103"
         ],
         "x": 140,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             [
                 "016dbbfa7beafd15",
@@ -9434,7 +8652,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 330,
-        "y": 1260,
+        "y": 1060,
         "wires": []
     },
     {
@@ -9449,7 +8667,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             [
                 "ae99d37bf854da85",
@@ -9475,7 +8693,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 550,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             [
                 "a27dc0e92fab9ca6",
@@ -9497,7 +8715,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 1260,
+        "y": 1060,
         "wires": []
     },
     {
@@ -9514,7 +8732,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 750,
-        "y": 1260,
+        "y": 1060,
         "wires": []
     },
     {
@@ -9529,7 +8747,7 @@
         "finalize": "",
         "libs": [],
         "x": 770,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             [
                 "f55a09781ce73821",
@@ -9552,7 +8770,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1030,
-        "y": 1260,
+        "y": 1060,
         "wires": []
     },
     {
@@ -9573,7 +8791,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 130,
-        "y": 1220,
+        "y": 1020,
         "wires": [
             [
                 "9867de49c7a07385"
@@ -9598,7 +8816,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 130,
-        "y": 1180,
+        "y": 980,
         "wires": [
             [
                 "9867de49c7a07385"
@@ -9617,7 +8835,7 @@
         "finalize": "",
         "libs": [],
         "x": 130,
-        "y": 1260,
+        "y": 1060,
         "wires": [
             [
                 "90f709f585a34502",
@@ -9640,7 +8858,7 @@
         "topic": "",
         "name": "",
         "x": 1290,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -9663,7 +8881,7 @@
         "repair": false,
         "outputs": 1,
         "x": 970,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             [
                 "b94a1907d7b54fec"
@@ -9682,7 +8900,7 @@
         "finalize": "",
         "libs": [],
         "x": 1120,
-        "y": 1320,
+        "y": 1120,
         "wires": [
             [
                 "292f3795ffe61dea"
@@ -9707,7 +8925,7 @@
         "repair": false,
         "outputs": 1,
         "x": 150,
-        "y": 1400,
+        "y": 1200,
         "wires": [
             [
                 "27342d1a0da877d6",
@@ -9729,7 +8947,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 320,
-        "y": 1440,
+        "y": 1240,
         "wires": []
     },
     {
@@ -9744,7 +8962,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 1400,
+        "y": 1200,
         "wires": [
             [
                 "1b4f4e89f9e24542"
@@ -9768,7 +8986,7 @@
         "senderr": false,
         "headers": [],
         "x": 490,
-        "y": 1400,
+        "y": 1200,
         "wires": [
             [
                 "40f76536355cfe34"
@@ -9787,7 +9005,7 @@
         "finalize": "",
         "libs": [],
         "x": 700,
-        "y": 1400,
+        "y": 1200,
         "wires": [
             [
                 "25d3899ae2f3b69a"
@@ -9812,7 +9030,7 @@
         "senderr": false,
         "headers": [],
         "x": 880,
-        "y": 1400,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -9823,8 +9041,8 @@
         "z": "67640d21.18442c",
         "name": "6 Seconden",
         "info": "",
-        "x": 70,
-        "y": 1760,
+        "x": 90,
+        "y": 1460,
         "wires": []
     },
     {
@@ -9839,8 +9057,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 400,
-        "y": 1760,
+        "x": 420,
+        "y": 1460,
         "wires": []
     },
     {
@@ -9855,8 +9073,437 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 600,
-        "y": 1760,
+        "x": 620,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "514e2ce1eaa78feb",
+        "type": "OPCUA-IIoT-Listener",
+        "z": "67640d21.18442c",
+        "connector": "74a7d84.2350d28",
+        "action": "subscribe",
+        "queueSize": "4",
+        "name": "Fill active?",
+        "topic": "",
+        "justValue": false,
+        "useGroupItems": false,
+        "showStatusActivities": true,
+        "showErrors": true,
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "620a0528a867b7c3"
+            ]
+        ]
+    },
+    {
+        "id": "7c2809e2ef4d27cf",
+        "type": "inject",
+        "z": "67640d21.18442c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "3bb030e548d3c796"
+            ]
+        ]
+    },
+    {
+        "id": "3bb030e548d3c796",
+        "type": "OPCUA-IIoT-Node",
+        "z": "67640d21.18442c",
+        "injectType": "listen",
+        "nodeId": "ns=3;s=\"gtyp_Setup\".\"x_Start_TON_Fill_HBW\"",
+        "datatype": "",
+        "value": "",
+        "name": "",
+        "topic": "",
+        "showErrors": true,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "514e2ce1eaa78feb"
+            ]
+        ]
+    },
+    {
+        "id": "620a0528a867b7c3",
+        "type": "function",
+        "z": "67640d21.18442c",
+        "name": "function 10",
+        "func": "var state = msg.payload.value.value.value;\n\nif (state) { \n    msg.enabled = true;\n} else { \n    msg.enabled = false;\n}\n\nreturn {\n    enabled: (msg.enabled),\n};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "d28bb97c4c3f57d1"
+            ]
+        ]
+    },
+    {
+        "id": "787365aa61fc5564",
+        "type": "ui_text",
+        "z": "67640d21.18442c",
+        "group": "c863b9e5.ef9b6",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "Fill HBW rack",
+        "label": "Fill HBW rack (during 60s after PLC startup):",
+        "format": "",
+        "layout": "row-spread",
+        "x": 35,
+        "y": 360,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "d28bb97c4c3f57d1",
+        "type": "ui_button",
+        "z": "67640d21.18442c",
+        "name": "",
+        "group": "c863b9e5.ef9b6",
+        "order": 9,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Fill",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "done",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "Signal1",
+        "x": 735,
+        "y": 400,
+        "wires": [
+            [
+                "3b96c204cb20e3bb"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "3b96c204cb20e3bb",
+        "type": "function",
+        "z": "67640d21.18442c",
+        "name": "declare values",
+        "func": "\nvar value = msg.payload\nvar newMsg={payload:{}}\n//newMsg.payload={}\nnewMsg.payload.injectType = \"write\";\n\nnewMsg.payload.addressSpaceItems = [\n        {nodeId:'ns=3;s=\"gtyp_Setup\".\"x_Fill_Rack_HBW\"',\n        datatypeName:'Boolean'},\n        ]\nnewMsg.payload.valuesToWrite = [value];\n\nreturn newMsg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 400,
+        "wires": [
+            [
+                "fa2e0a3190b92ed9"
+            ]
+        ]
+    },
+    {
+        "id": "fa2e0a3190b92ed9",
+        "type": "OPCUA-IIoT-Write",
+        "z": "67640d21.18442c",
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "x": 1050,
+        "y": 400,
+        "wires": [
+            [
+                "1259cdd760c4e09f"
+            ]
+        ]
+    },
+    {
+        "id": "1259cdd760c4e09f",
+        "type": "OPCUA-IIoT-Response",
+        "z": "67640d21.18442c",
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 1200,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bbf69ae61fb53f3",
+        "type": "inject",
+        "z": "67640d21.18442c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 710,
+        "y": 440,
+        "wires": [
+            [
+                "3b96c204cb20e3bb"
+            ]
+        ]
+    },
+    {
+        "id": "8bf6514a748211a3",
+        "type": "function",
+        "z": "67640d21.18442c",
+        "name": "values to read",
+        "func": "//msg.nodetype = \"inject\";\nmsg.payload.injectType = \"read\";\n\nmsg.payload.addressSpaceItems = [\n    {\n        \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"r_Version_SPS\"',\n        \"datatypeName\":'Float'},\n        ]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 560,
+        "wires": [
+            [
+                "7b87274fad4cf86f"
+            ]
+        ]
+    },
+    {
+        "id": "7b87274fad4cf86f",
+        "type": "OPCUA-IIoT-Read",
+        "z": "67640d21.18442c",
+        "attributeId": "13",
+        "maxAge": 1,
+        "depth": 1,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "parseStrings": false,
+        "historyDays": "",
+        "x": 430,
+        "y": 560,
+        "wires": [
+            [
+                "1fcad789dfdd6ae1",
+                "36763b1fb0790230"
+            ]
+        ]
+    },
+    {
+        "id": "1fcad789dfdd6ae1",
+        "type": "OPCUA-IIoT-Response",
+        "z": "67640d21.18442c",
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 580,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36763b1fb0790230",
+        "type": "function",
+        "z": "67640d21.18442c",
+        "name": "single value",
+        "func": "\n//var new_msg = { payload: \"\" };\nvar output = msg.payload.value[0].value.value ;\n\noutput = Math.round(output*100)/100;\n\n//new_msg.payload = output;\n\nreturn {payload:output}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 560,
+        "wires": [
+            [
+                "5cc8ec8525479e3c"
+            ]
+        ]
+    },
+    {
+        "id": "94f029528b0355f3",
+        "type": "ui_text",
+        "z": "67640d21.18442c",
+        "group": "c863b9e5.ef9b6",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Version Index",
+        "format": "",
+        "layout": "row-spread",
+        "x": 840,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e967276b0121de42",
+        "type": "inject",
+        "z": "67640d21.18442c",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "0.0",
+        "payloadType": "str",
+        "x": 610,
+        "y": 600,
+        "wires": [
+            [
+                "5cc8ec8525479e3c"
+            ]
+        ]
+    },
+    {
+        "id": "5cc8ec8525479e3c",
+        "type": "ui_text",
+        "z": "67640d21.18442c",
+        "group": "c863b9e5.ef9b6",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "name": "",
+        "label": "PLC:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 870,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1d09f26ca67dd85e",
+        "type": "inject",
+        "z": "67640d21.18442c",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1.4",
+        "payloadType": "str",
+        "x": 610,
+        "y": 640,
+        "wires": [
+            [
+                "34f2980865d30a8b"
+            ]
+        ]
+    },
+    {
+        "id": "34f2980865d30a8b",
+        "type": "ui_text",
+        "z": "67640d21.18442c",
+        "group": "c863b9e5.ef9b6",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "name": "",
+        "label": "HMI:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 870,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "0b8730bc63fad118",
+        "type": "inject",
+        "z": "67640d21.18442c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "6",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 560,
+        "wires": [
+            [
+                "8bf6514a748211a3"
+            ]
+        ]
+    },
+    {
+        "id": "95e3ced493fc0a5d",
+        "type": "comment",
+        "z": "67640d21.18442c",
+        "name": "Fill HBW Rack",
+        "info": "",
+        "x": 790,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "4a1813d38c3468a7",
+        "type": "comment",
+        "z": "67640d21.18442c",
+        "name": "Check if Fill is allowed",
+        "info": "",
+        "x": 160,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a116366cd1812559",
+        "type": "comment",
+        "z": "67640d21.18442c",
+        "name": "Check PLC Version",
+        "info": "",
+        "x": 110,
+        "y": 520,
         "wires": []
     },
     {
