@@ -8612,7 +8612,7 @@
         "useGroupItems": false,
         "showStatusActivities": false,
         "showErrors": true,
-        "x": 460,
+        "x": 440,
         "y": 1500,
         "wires": [
             [
@@ -9146,7 +9146,7 @@
         "id": "620a0528a867b7c3",
         "type": "function",
         "z": "67640d21.18442c",
-        "name": "function 10",
+        "name": "Button state",
         "func": "var state = msg.payload.value.value.value;\n\nif (state) { \n    msg.enabled = true;\n} else { \n    msg.enabled = false;\n}\n\nreturn {\n    enabled: (msg.enabled),\n};\n",
         "outputs": 1,
         "noerr": 0,
@@ -25155,6 +25155,321 @@
         "layout": "row-spread",
         "x": 680,
         "y": 80,
+        "wires": []
+    },
+    {
+        "id": "271a5f7c8b807194",
+        "type": "OPCUA-IIoT-Listener",
+        "z": "3f3c6013.7a3158",
+        "connector": "74a7d84.2350d28",
+        "action": "subscribe",
+        "queueSize": "4",
+        "name": "Fill active?",
+        "topic": "",
+        "justValue": false,
+        "useGroupItems": false,
+        "showStatusActivities": true,
+        "showErrors": true,
+        "x": 570,
+        "y": 1500,
+        "wires": [
+            [
+                "24dd651b5fe962e6"
+            ]
+        ]
+    },
+    {
+        "id": "800e16337724451e",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 1500,
+        "wires": [
+            [
+                "b2cc46802c656e6d"
+            ]
+        ]
+    },
+    {
+        "id": "b2cc46802c656e6d",
+        "type": "OPCUA-IIoT-Node",
+        "z": "3f3c6013.7a3158",
+        "injectType": "listen",
+        "nodeId": "ns=3;s=\"gtyp_Setup\".\"x_Start_TON_Fill_HBW\"",
+        "datatype": "",
+        "value": "",
+        "name": "",
+        "topic": "",
+        "showErrors": true,
+        "x": 410,
+        "y": 1500,
+        "wires": [
+            [
+                "271a5f7c8b807194"
+            ]
+        ]
+    },
+    {
+        "id": "24dd651b5fe962e6",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "name": "Button state",
+        "func": "var state = msg.payload.value.value.value;\n\nif (state) { \n    msg.enabled = true;\n} else { \n    msg.enabled = false;\n}\n\nreturn {\n    enabled: (msg.enabled),\n};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 1500,
+        "wires": [
+            [
+                "4e1401f16e3fd0f6"
+            ]
+        ]
+    },
+    {
+        "id": "4e1401f16e3fd0f6",
+        "type": "ui_button",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "group": "c863b9e5.ef9b6",
+        "order": 9,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Fill",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "done",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "Signal1",
+        "x": 875,
+        "y": 1500,
+        "wires": [
+            [
+                "bbb5d642e1a772a6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "bbb5d642e1a772a6",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "name": "declare values",
+        "func": "\nvar value = msg.payload\nvar newMsg={payload:{}}\n//newMsg.payload={}\nnewMsg.payload.injectType = \"write\";\n\nnewMsg.payload.addressSpaceItems = [\n        {nodeId:'ns=3;s=\"gtyp_Setup\".\"x_Fill_Rack_HBW\"',\n        datatypeName:'Boolean'},\n        ]\nnewMsg.payload.valuesToWrite = [value];\n\nreturn newMsg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 1500,
+        "wires": [
+            [
+                "5413399c7c1284be"
+            ]
+        ]
+    },
+    {
+        "id": "5413399c7c1284be",
+        "type": "OPCUA-IIoT-Write",
+        "z": "3f3c6013.7a3158",
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "x": 1170,
+        "y": 1500,
+        "wires": [
+            [
+                "da2ec05224b812e6"
+            ]
+        ]
+    },
+    {
+        "id": "da2ec05224b812e6",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 1320,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9eb7fac02bba82ad",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "name": "values to read",
+        "func": "msg.payload.injectType = \"read\";\n\nmsg.payload.addressSpaceItems = [\n    {\n        \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_Setup\".\"r_Version_SPS\"',\n        \"datatypeName\":'Float'},\n        ]\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1620,
+        "wires": [
+            [
+                "86e8cdef3e15db9f"
+            ]
+        ]
+    },
+    {
+        "id": "86e8cdef3e15db9f",
+        "type": "OPCUA-IIoT-Read",
+        "z": "3f3c6013.7a3158",
+        "attributeId": "13",
+        "maxAge": 1,
+        "depth": 1,
+        "connector": "74a7d84.2350d28",
+        "name": "",
+        "justValue": true,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "parseStrings": false,
+        "historyDays": "",
+        "x": 590,
+        "y": 1620,
+        "wires": [
+            [
+                "ac15999330b38d21",
+                "1c9cfe21f6e8a8f8"
+            ]
+        ]
+    },
+    {
+        "id": "ac15999330b38d21",
+        "type": "OPCUA-IIoT-Response",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "compressStructure": false,
+        "showStatusActivities": false,
+        "showErrors": true,
+        "activateUnsetFilter": false,
+        "activateFilters": false,
+        "negateFilter": false,
+        "filters": [],
+        "x": 740,
+        "y": 1660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1c9cfe21f6e8a8f8",
+        "type": "function",
+        "z": "3f3c6013.7a3158",
+        "name": "single value",
+        "func": "\n//var new_msg = { payload: \"\" };\nvar output = msg.payload.value[0].value.value ;\n\noutput = Math.round(output*100)/100;\n\n//new_msg.payload = output;\n\nreturn {payload:output}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 1620,
+        "wires": [
+            [
+                "7b4b0c907f5a3ca8"
+            ]
+        ]
+    },
+    {
+        "id": "7b4b0c907f5a3ca8",
+        "type": "ui_text",
+        "z": "3f3c6013.7a3158",
+        "group": "c863b9e5.ef9b6",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "name": "",
+        "label": "PLC:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 890,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "1b76a7327708f80c",
+        "type": "inject",
+        "z": "3f3c6013.7a3158",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "6",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 1620,
+        "wires": [
+            [
+                "9eb7fac02bba82ad"
+            ]
+        ]
+    },
+    {
+        "id": "31169f05be789935",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "Fill HBW Rack",
+        "info": "",
+        "x": 930,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "783c61c5be9954c4",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "Check if Fill is allowed",
+        "info": "",
+        "x": 280,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "d0f1b31eae37483d",
+        "type": "comment",
+        "z": "3f3c6013.7a3158",
+        "name": "Check PLC Version",
+        "info": "",
+        "x": 270,
+        "y": 1580,
         "wires": []
     },
     {
