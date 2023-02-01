@@ -1130,7 +1130,7 @@
         "tab": "1e4a1f68.4051f1",
         "order": 2,
         "disp": true,
-        "width": "10",
+        "width": "8",
         "collapse": false
     },
     {
@@ -9196,7 +9196,7 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "Signal1",
-        "x": 735,
+        "x": 725,
         "y": 400,
         "wires": [
             [
@@ -13593,7 +13593,7 @@
         "links": [
             "19676fa9.e0ef6"
         ],
-        "x": 115,
+        "x": 215,
         "y": 660,
         "wires": [
             [
@@ -15478,6 +15478,7 @@
         "id": "1ad79c7c.60c88c",
         "type": "OPCUA-IIoT-Inject",
         "z": "e90a5e7b.6f44e8",
+        "d": true,
         "injectType": "listen",
         "payload": "1000",
         "payloadType": "num",
@@ -15537,9 +15538,7 @@
         "x": 110,
         "y": 80,
         "wires": [
-            [
-                "61614396.7f7454"
-            ]
+            []
         ]
     },
     {
@@ -15571,6 +15570,9 @@
         "func": "\n\nmsg.nodetype = \"inject\";\nmsg.injectType = \"read\";\n\nmsg.addressSpaceItems = [\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"horizontal_Axis\".\"di_Actual_Position\"',\n        \"datatypeName\":'Int32'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"vertical_Axis\".\"di_Actual_Position\"',\n        \"datatypeName\":'Int32'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"rotate_Axis\".\"di_Actual_Position\"',\n        \"datatypeName\":'Int32'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"horizontal_Axis\".\"di_Target_Position\"',\n        \"datatypeName\":'Int32'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"vertical_Axis\".\"di_Target_Position\"',\n        \"datatypeName\":'Int32'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"rotate_Axis\".\"di_Target_Position\"',\n        \"datatypeName\":'Int32'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"horizontal_Axis\".\"x_Position_Reached\"',\n        \"datatypeName\":'Boolean'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"vertical_Axis\".\"x_Position_Reached\"',\n        \"datatypeName\":'Boolean'},\n    {   \"name\":\"\",\n        \"nodeId\":'ns=3;s=\"gtyp_VGR\".\"rotate_Axis\".\"x_Position_Reached\"',\n        \"datatypeName\":'Boolean'},\n        ]\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 460,
         "y": 80,
         "wires": [
@@ -15648,6 +15650,9 @@
         "func": "var lastState = flow.get('VGR_State') || {};\n\n// Colorize \nif (msg.payload.state == 1) \n{     msg.payload.color = '#5a5' } else\n{     msg.payload.color = '#a55' }\n\n\nlastState[msg.topic] = msg.payload; \nflow.set('VGR_State', lastState);\nreturn {  \n    \"topic\": msg.topic,\n    \"payload\": lastState,\n     \"url\": msg.url\n};\n",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 820,
         "y": 300,
         "wires": [
@@ -19651,6 +19656,54 @@
         "wires": [
             [
                 "8fa85c2f.122b48"
+            ]
+        ]
+    },
+    {
+        "id": "2bfe2fccf9c9a927",
+        "type": "inject",
+        "z": "e90a5e7b.6f44e8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "9",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "c627baaac4404fa9"
+            ]
+        ]
+    },
+    {
+        "id": "c627baaac4404fa9",
+        "type": "OPCUA-IIoT-Node",
+        "z": "e90a5e7b.6f44e8",
+        "injectType": "listen",
+        "nodeId": "ns=3;s=\"gtyp_VGR\"",
+        "datatype": "",
+        "value": "",
+        "name": "",
+        "topic": "",
+        "showErrors": false,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "61614396.7f7454"
             ]
         ]
     },
